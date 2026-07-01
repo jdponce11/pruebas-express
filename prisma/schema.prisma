@@ -1,0 +1,30 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+  url = env("DATABASE_URL")
+}
+
+model Producto {
+  id Int @id @default(autoincrement)
+  empresa_id Empresa @relation(fields: [empresa_id], references: [id])
+  nombre String
+  categoria String?
+  cantidad Int @default(0)
+  archivado Int @default(0)
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
+model Empresa {
+  id Int @id @default(autoincrement)
+  nombre String
+  password_hash String
+  email String @unique
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  productos Producto[] // Esto ayuda a que prisma vea la relación en ambos sentidos hacia el otro modelo.
+}
