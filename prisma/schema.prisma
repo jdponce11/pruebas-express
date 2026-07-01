@@ -1,16 +1,16 @@
 generator client {
-  provider = "prisma-client"
+  provider = "prisma-client-js"
   output   = "../generated/prisma"
 }
 
 datasource db {
   provider = "sqlite"
-  url = env("DATABASE_URL")
 }
 
 model Producto {
-  id Int @id @default(autoincrement)
-  empresa_id Empresa @relation(fields: [empresa_id], references: [id])
+  id Int @id @default(autoincrement())
+  empresa_id Int
+  empresa Empresa  @relation(fields: [empresa_id], references: [id])
   nombre String
   categoria String?
   cantidad Int @default(0)
@@ -20,7 +20,7 @@ model Producto {
 }
 
 model Empresa {
-  id Int @id @default(autoincrement)
+  id Int @id @default(autoincrement())
   nombre String
   password_hash String
   email String @unique
