@@ -1,6 +1,6 @@
-const express = require("express");
+import express from "express";
 const app = express();
-const productosRouter = require("./routes/productos");
+import productosRouter from "./routes/productos.js";
 
 app.get("/health", function (req, res) {
   res.json({ status: "ok" });
