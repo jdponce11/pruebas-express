@@ -1,5 +1,5 @@
 import express from "express";
-import { getActivos } from "../services/productoService.js";
+import { getActivos } from "../services/productoService";
 const router = express.Router();
 
 router.get("/", async function (req, res) {
