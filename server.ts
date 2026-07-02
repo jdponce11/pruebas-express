@@ -1,5 +1,7 @@
 import express from "express";
 const app = express();
+
+import "dotenv/config";
 import productosRouter from "./routes/productos";
 
 app.get("/health", function (req, res) {
